@@ -1,0 +1,97 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty",
+  "files": [
+    {
+      "path": "registry/radix-vega/ui/empty.tsx",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/registry/radix-vega/lib/utils\"\n\nfunction Empty({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"empty\"\n      className={cn(\n        \"flex w-full min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-lg border-dashed p-12 text-center text-balance\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction EmptyHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"empty-header\"\n      className={cn(\"flex max-w-sm flex-col items-center gap-2\", className)}\n      {...props}\n    />\n  )\n}\n\nconst emptyMediaVariants = cva(\n  \"mb-2 flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-transparent\",\n        icon: \"flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground [&_svg:not([class*='size-'])]:size-6\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n)\n\nfunction EmptyMedia({\n  className,\n  variant = \"default\",\n  ...props\n}: React.ComponentProps<\"div\"> & VariantProps<typeof emptyMediaVariants>) {\n  return (\n    <div\n      data-slot=\"empty-icon\"\n      data-variant={variant}\n      className={cn(emptyMediaVariants({ variant, className }))}\n      {...props}\n    />\n  )\n}\n\nfunction EmptyTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"empty-title\"\n      className={cn(\n        \"cn-font-heading text-lg font-medium tracking-tight\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction EmptyDescription({ className, ...props }: React.ComponentProps<\"p\">) {\n  return (\n    <div\n      data-slot=\"empty-description\"\n      className={cn(\n        \"text-sm/relaxed text-muted-foreground [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction EmptyContent({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"empty-content\"\n      className={cn(\n        \"flex w-full max-w-sm min-w-0 flex-col items-center gap-4 text-sm text-balance\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport {\n  Empty,\n  EmptyHeader,\n  EmptyTitle,\n  EmptyDescription,\n  EmptyContent,\n  EmptyMedia,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "css": {
+    "@keyframes shadcn-empty-icon-settle": {
+      "0%, 100%": {
+        "transform": "translate3d(0, 0, 0) rotate(0deg)"
+      },
+      "22%": {
+        "transform": "translate3d(-1px, -2px, 0) rotate(-5deg)"
+      },
+      "48%": {
+        "transform": "translate3d(0, 1px, 0) rotate(2deg)"
+      },
+      "72%": {
+        "transform": "translate3d(1px, -1px, 0) rotate(-2deg)"
+      }
+    },
+    "@keyframes shadcn-empty-icon-stroke-primary": {
+      "0%, 100%": {
+        "opacity": "1",
+        "transform": "translate3d(0, 0, 0) scale(1)"
+      },
+      "18%": {
+        "opacity": "0.36",
+        "transform": "translate3d(-2px, 1px, 0) scale(0.88)"
+      },
+      "42%": {
+        "opacity": "1",
+        "transform": "translate3d(0, 0, 0) scale(1)"
+      },
+      "68%": {
+        "opacity": "0.55",
+        "transform": "translate3d(1px, -1px, 0) scale(0.94)"
+      }
+    },
+    "@keyframes shadcn-empty-icon-stroke-secondary": {
+      "0%, 100%": {
+        "opacity": "1",
+        "transform": "translate3d(0, 0, 0) scale(1)"
+      },
+      "24%": {
+        "opacity": "0.9",
+        "transform": "translate3d(1px, 0, 0) scale(0.96)"
+      },
+      "50%": {
+        "opacity": "0.38",
+        "transform": "translate3d(2px, -1px, 0) scale(0.9)"
+      },
+      "76%": {
+        "opacity": "1",
+        "transform": "translate3d(0, 0, 0) scale(1)"
+      }
+    },
+    "@media (prefers-reduced-motion: no-preference)": {
+      "[data-slot=\"empty-icon\"][data-variant=\"icon\"] > svg": {
+        "animation": "shadcn-empty-icon-settle 2.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite",
+        "transform-box": "fill-box",
+        "transform-origin": "center",
+        "will-change": "transform"
+      },
+      "[data-slot=\"empty-icon\"][data-variant=\"icon\"] > svg > :is(path, line, polyline, polygon, rect, circle, ellipse)": {
+        "animation": "shadcn-empty-icon-stroke-primary 2.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite",
+        "transform-box": "fill-box",
+        "transform-origin": "center",
+        "will-change": "transform, opacity"
+      },
+      "[data-slot=\"empty-icon\"][data-variant=\"icon\"] > svg > :is(path, line, polyline, polygon, rect, circle, ellipse):nth-child(2n)": {
+        "animation-name": "shadcn-empty-icon-stroke-secondary"
+      },
+      "[data-slot=\"empty-icon\"][data-variant=\"icon\"] > svg > :is(path, line, polyline, polygon, rect, circle, ellipse):nth-child(3n)": {
+        "animation-delay": "120ms"
+      }
+    },
+    "@media (prefers-reduced-motion: reduce)": {
+      "[data-slot=\"empty-icon\"] svg, [data-slot=\"empty-icon\"] svg > :is(path, line, polyline, polygon, rect, circle, ellipse)": {
+        "animation": "none",
+        "opacity": "1",
+        "transform": "none"
+      }
+    }
+  },
+  "meta": {
+    "links": {
+      "docs": "https://ui.shadcn.com/docs/components/radix/empty",
+      "examples": "https://ui.shadcn.com/code/apps/v4/registry/bases/radix/examples/empty-example.tsx"
+    }
+  },
+  "type": "registry:ui"
+}

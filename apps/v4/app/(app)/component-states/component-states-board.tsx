@@ -205,7 +205,7 @@ export function ComponentStatesBoard() {
                 </InputGroupAddon>
                 <InputGroupInput
                   data-state-target="input-group-focus"
-                  defaultValue="component states"
+                  placeholder="Search components"
                 />
                 <InputGroupAddon align="inline-end">
                   <InputGroupButton size="icon-xs" aria-label="Tune filters">
@@ -221,7 +221,7 @@ export function ComponentStatesBoard() {
                 </InputGroupAddon>
                 <InputGroupInput
                   data-state-target="input-group-command"
-                  defaultValue="Ask Prism"
+                  placeholder="Ask Prism"
                 />
                 <InputGroupAddon align="inline-end">
                   <InputGroupText>⌘K</InputGroupText>
@@ -234,8 +234,9 @@ export function ComponentStatesBoard() {
                   <Mail />
                 </InputGroupAddon>
                 <InputGroupInput
+                  data-state-target="input-group-invalid"
                   aria-invalid="true"
-                  defaultValue="missing-domain"
+                  placeholder="Enter your email here"
                 />
               </InputGroup>
             </StateColumn>
@@ -267,7 +268,7 @@ export function ComponentStatesBoard() {
                   />
                 }
               >
-                Component actions
+                Actions
                 <ChevronDown />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" sideOffset={10}>

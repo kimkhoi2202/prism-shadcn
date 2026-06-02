@@ -5,15 +5,19 @@ import puppeteer from "puppeteer"
 const projectRoot = path.resolve(import.meta.dirname, "..")
 const outputDir = path.join(projectRoot, "Component Screenshots")
 const url = process.env.COMPONENT_STATES_URL ?? "http://localhost:3000/component-states"
+const deviceScaleFactor = 4
 
 await mkdir(outputDir, { recursive: true })
 
 const browser = await puppeteer.launch({ headless: true })
 const page = await browser.newPage()
-await page.setViewport({ width: 1440, height: 1500, deviceScaleFactor: 2 })
+await page.setViewport({ width: 1440, height: 1500, deviceScaleFactor })
 
 await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 })
 await page.waitForSelector('[data-capture="button"]', { timeout: 60000 })
+await page.evaluate(async () => {
+  await document.fonts?.ready
+})
 await page.evaluate(() => window.scrollTo(0, 0))
 
 const captures = [

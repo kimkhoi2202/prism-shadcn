@@ -252,7 +252,7 @@ export function ComponentStatesBoard() {
         <CaptureSection id="textarea" title="Textarea">
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             <StateColumn label="Default">
-              <Textarea placeholder="Write component notes" />
+              <Textarea placeholder="Write notes" />
             </StateColumn>
             <StateColumn label="Filled">
               <Textarea defaultValue="Design review notes stay clear, direct, and easy to scan." />
@@ -276,17 +276,7 @@ export function ComponentStatesBoard() {
               <Textarea
                 data-state-target="textarea-autosize"
                 mode="autosize"
-                defaultValue={[
-                  "A textarea can start at the normal default height.",
-                  "As the user writes more notes, the field grows with the content.",
-                  "This keeps short prompts compact.",
-                  "It also keeps longer prototype notes readable.",
-                  "The maximum height is capped at eight text lines.",
-                  "After that, the content scrolls inside the field.",
-                  "The surrounding layout stays stable.",
-                  "The resize handle is removed for this mode.",
-                  "This ninth line proves the scroll behavior.",
-                ].join("\n")}
+                placeholder="Write notes"
               />
             </StateColumn>
           </div>

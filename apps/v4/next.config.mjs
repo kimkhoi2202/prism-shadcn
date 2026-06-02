@@ -30,6 +30,9 @@ const nextConfig = {
     root: path.resolve(import.meta.dirname, "../.."),
   },
   experimental: {
+    cpus: 2,
+    staticGenerationMaxConcurrency: 2,
+    staticGenerationMinPagesPerWorker: 100,
     turbopackFileSystemCacheForDev: true,
   },
   redirects() {

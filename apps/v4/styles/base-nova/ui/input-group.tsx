@@ -124,7 +124,7 @@ function InputGroupInput({
     <Input
       data-slot="input-group-control"
       className={cn(
-        "flex-1 rounded-none border-0 bg-transparent shadow-none ring-0 outline-none focus:border-0 focus:bg-transparent focus-visible:border-0 focus-visible:bg-transparent focus-visible:ring-0 focus-visible:outline-none disabled:bg-transparent aria-invalid:ring-0 aria-invalid:focus-visible:outline-none dark:bg-transparent dark:focus:bg-transparent dark:focus-visible:bg-transparent dark:disabled:bg-transparent",
+        "flex-1 rounded-none !border-0 bg-transparent !shadow-none !ring-0 !outline-none focus:!border-0 focus:bg-transparent focus:!shadow-none focus:!ring-0 focus:!outline-none focus-visible:!border-0 focus-visible:bg-transparent focus-visible:!shadow-none focus-visible:!ring-0 focus-visible:!outline-none disabled:bg-transparent aria-invalid:!ring-0 aria-invalid:focus:!shadow-none aria-invalid:focus:!outline-none aria-invalid:focus-visible:!shadow-none aria-invalid:focus-visible:!outline-none dark:bg-transparent dark:focus:bg-transparent dark:focus:!shadow-none dark:focus-visible:bg-transparent dark:focus-visible:!shadow-none dark:disabled:bg-transparent",
         className
       )}
       {...props}
@@ -140,7 +140,7 @@ function InputGroupTextarea({
     <Textarea
       data-slot="input-group-control"
       className={cn(
-        "flex-1 resize-none rounded-none border-0 bg-transparent py-2 shadow-none ring-0 outline-none focus:border-0 focus:bg-transparent focus-visible:border-0 focus-visible:bg-transparent focus-visible:ring-0 focus-visible:outline-none disabled:bg-transparent aria-invalid:ring-0 aria-invalid:focus-visible:outline-none dark:bg-transparent dark:focus:bg-transparent dark:focus-visible:bg-transparent dark:disabled:bg-transparent",
+        "flex-1 resize-none rounded-none !border-0 bg-transparent py-2 !shadow-none !ring-0 !outline-none focus:!border-0 focus:bg-transparent focus:!shadow-none focus:!ring-0 focus:!outline-none focus-visible:!border-0 focus-visible:bg-transparent focus-visible:!shadow-none focus-visible:!ring-0 focus-visible:!outline-none disabled:bg-transparent aria-invalid:!ring-0 aria-invalid:focus:!shadow-none aria-invalid:focus:!outline-none aria-invalid:focus-visible:!shadow-none aria-invalid:focus-visible:!outline-none dark:bg-transparent dark:focus:bg-transparent dark:focus:!shadow-none dark:focus-visible:bg-transparent dark:focus-visible:!shadow-none dark:disabled:bg-transparent",
         className
       )}
       {...props}

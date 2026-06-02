@@ -30,4 +30,4 @@ Set `COMPONENT_STATES_URL` if the route is hosted somewhere else:
 COMPONENT_STATES_URL=https://example.com/component-states node "Generation Scripts/component-state-screenshots.mjs"
 ```
 
-The script focuses or hovers relevant controls before capturing each component section so the interaction states are visible.
+The script focuses or hovers relevant controls before capturing each component section so the interaction states are visible. Captures are generated at `deviceScaleFactor: 2` for sharper Figma placement.

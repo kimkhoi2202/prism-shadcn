@@ -219,7 +219,10 @@ export function ComponentStatesBoard() {
                 <InputGroupAddon>
                   <Command />
                 </InputGroupAddon>
-                <InputGroupInput defaultValue="Ask Prism" />
+                <InputGroupInput
+                  data-state-target="input-group-command"
+                  defaultValue="Ask Prism"
+                />
                 <InputGroupAddon align="inline-end">
                   <InputGroupText>⌘K</InputGroupText>
                 </InputGroupAddon>
@@ -241,7 +244,10 @@ export function ComponentStatesBoard() {
                 <InputGroupAddon align="block-start">
                   <InputGroupText>Prompt</InputGroupText>
                 </InputGroupAddon>
-                <InputGroupTextarea defaultValue="Generate a tuned default state for a new product form." />
+                <InputGroupTextarea
+                  data-state-target="input-group-prompt"
+                  defaultValue="Generate a tuned default state for a new product form."
+                />
                 <InputGroupAddon align="block-end">
                   <InputGroupButton>Run</InputGroupButton>
                 </InputGroupAddon>
@@ -251,7 +257,7 @@ export function ComponentStatesBoard() {
         </CaptureSection>
 
         <CaptureSection id="dropdown-menu" title="Dropdown Menu">
-          <div className="min-h-[360px]">
+          <div className="min-h-[620px]">
             <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
               <DropdownMenuTrigger
                 render={

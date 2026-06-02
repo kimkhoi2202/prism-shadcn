@@ -10,7 +10,7 @@ await mkdir(outputDir, { recursive: true })
 
 const browser = await puppeteer.launch({ headless: true })
 const page = await browser.newPage()
-await page.setViewport({ width: 1440, height: 1200, deviceScaleFactor: 1 })
+await page.setViewport({ width: 1440, height: 1500, deviceScaleFactor: 2 })
 
 await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 })
 await page.waitForSelector('[data-capture="button"]', { timeout: 60000 })

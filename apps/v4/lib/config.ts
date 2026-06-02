@@ -1,4 +1,10 @@
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"
+const appUrl =
+  process.env.NEXT_PUBLIC_APP_URL ||
+  process.env.VERCEL_PROJECT_PRODUCTION_URL ||
+  process.env.VERCEL_URL ||
+  "http://localhost:3000"
+
+const siteUrl = appUrl.startsWith("http") ? appUrl : `https://${appUrl}`
 
 export const siteConfig = {
   name: "Prism ShadCN",

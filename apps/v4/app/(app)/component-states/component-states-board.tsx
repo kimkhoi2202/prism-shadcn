@@ -3,20 +3,81 @@
 import * as React from "react"
 import {
   Archive,
+  Calendar,
   ChevronDown,
-  Command,
+  CircleAlert,
+  Command as CommandIcon,
   Copy,
+  CreditCard,
   Download,
   Mail,
   Search,
   Settings,
   SlidersHorizontal,
   Sparkles,
+  Trash2,
   UserRound,
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogMedia,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/styles/base-nova/ui/alert-dialog"
 import { Button } from "@/styles/base-nova/ui/button"
+import { Checkbox } from "@/styles/base-nova/ui/checkbox"
+import {
+  Combobox,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+} from "@/styles/base-nova/ui/combobox"
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from "@/styles/base-nova/ui/command"
+import {
+  ContextMenu,
+  ContextMenuCheckboxItem,
+  ContextMenuContent,
+  ContextMenuGroup,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuRadioGroup,
+  ContextMenuRadioItem,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  ContextMenuTrigger,
+} from "@/styles/base-nova/ui/context-menu"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/styles/base-nova/ui/dialog"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -42,7 +103,31 @@ import {
   InputGroupText,
   InputGroupTextarea,
 } from "@/styles/base-nova/ui/input-group"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/styles/base-nova/ui/select"
 import { Textarea } from "@/styles/base-nova/ui/textarea"
+
+const componentOptions = [
+  { label: "Button", value: "button" },
+  { label: "Dialog", value: "dialog" },
+  { label: "Command", value: "command" },
+  { label: "Select", value: "select" },
+]
+
+const comboboxItems = [
+  "Alert Dialog",
+  "Checkbox",
+  "Combobox",
+  "Context Menu",
+  "Dropdown Menu",
+]
 
 function CaptureSection({
   id,
@@ -98,8 +183,8 @@ export function ComponentStatesBoard() {
             Prism ShadCN component states
           </h1>
           <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
-            Button, input, textarea, input group, and dropdown menu captures for
-            the Homework 5.1 prototype.
+            High-fidelity interaction captures for the Homework 5.1 prototype
+            and DP5 component flow.
           </p>
         </div>
 
@@ -187,10 +272,21 @@ export function ComponentStatesBoard() {
             <StateColumn label="Disabled">
               <Textarea disabled defaultValue="Commenting is disabled." />
             </StateColumn>
-            <StateColumn label="Tall">
+            <StateColumn label="Autosize">
               <Textarea
-                rows={5}
-                defaultValue="A taller field keeps writing comfortable without losing the crisp Prism surface treatment."
+                data-state-target="textarea-autosize"
+                mode="autosize"
+                defaultValue={[
+                  "A textarea can start at the normal default height.",
+                  "As the user writes more notes, the field grows with the content.",
+                  "This keeps short prompts compact.",
+                  "It also keeps longer prototype notes readable.",
+                  "The maximum height is capped at eight text lines.",
+                  "After that, the content scrolls inside the field.",
+                  "The surrounding layout stays stable.",
+                  "The resize handle is removed for this mode.",
+                  "This ninth line proves the scroll behavior.",
+                ].join("\n")}
               />
             </StateColumn>
           </div>
@@ -217,7 +313,7 @@ export function ComponentStatesBoard() {
             <StateColumn label="Command">
               <InputGroup>
                 <InputGroupAddon>
-                  <Command />
+                  <CommandIcon />
                 </InputGroupAddon>
                 <InputGroupInput
                   data-state-target="input-group-command"
@@ -253,6 +349,302 @@ export function ComponentStatesBoard() {
                   <InputGroupButton>Run</InputGroupButton>
                 </InputGroupAddon>
               </InputGroup>
+            </StateColumn>
+          </div>
+        </CaptureSection>
+
+        <CaptureSection id="dialog" title="Dialog">
+          <div className="grid gap-5 md:grid-cols-2">
+            <StateColumn label="Trigger">
+              <Dialog>
+                <DialogTrigger render={<Button variant="outline" />}>
+                  Edit profile
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Review component defaults</DialogTitle>
+                    <DialogDescription>
+                      Tune the saved preset before publishing it to the shared
+                      design system.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-3">
+                    <Input defaultValue="Prism component states" />
+                    <Textarea
+                      data-state-target="dialog-textarea-autosize"
+                      mode="autosize"
+                      defaultValue="Inputs, menus, and dialogs should feel consistent across light and dark surfaces."
+                    />
+                  </div>
+                  <DialogFooter>
+                    <DialogClose render={<Button variant="outline" />}>
+                      Cancel
+                    </DialogClose>
+                    <Button>Save preset</Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+            </StateColumn>
+            <StateColumn label="Compact">
+              <Dialog>
+                <DialogTrigger render={<Button />}>Open review</DialogTrigger>
+                <DialogContent className="sm:max-w-xs">
+                  <DialogHeader>
+                    <DialogTitle>Prototype note</DialogTitle>
+                    <DialogDescription>
+                      This modal keeps confirmation copy short and action
+                      hierarchy clear.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <DialogFooter showCloseButton>
+                    <Button size="sm">Continue</Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+            </StateColumn>
+          </div>
+        </CaptureSection>
+
+        <CaptureSection id="alert-dialog" title="Alert Dialog">
+          <div className="grid gap-5 md:grid-cols-2">
+            <StateColumn label="Default">
+              <AlertDialog>
+                <AlertDialogTrigger render={<Button variant="outline" />}>
+                  Show warning
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Replace saved variant?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This will update the shared button state used in the
+                      prototype screens.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction>Replace</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </StateColumn>
+            <StateColumn label="Destructive">
+              <AlertDialog>
+                <AlertDialogTrigger render={<Button variant="destructive" />}>
+                  Delete token
+                </AlertDialogTrigger>
+                <AlertDialogContent size="sm">
+                  <AlertDialogHeader>
+                    <AlertDialogMedia className="bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive">
+                      <Trash2 />
+                    </AlertDialogMedia>
+                    <AlertDialogTitle>Delete token?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This removes the color token from the current Prism
+                      preset.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction variant="destructive">
+                      Delete
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </StateColumn>
+          </div>
+        </CaptureSection>
+
+        <CaptureSection id="checkbox" title="Checkbox">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <StateColumn label="Default">
+              <label className="flex items-center gap-2 text-sm">
+                <Checkbox />
+                Include hover state
+              </label>
+            </StateColumn>
+            <StateColumn label="Checked">
+              <label className="flex items-center gap-2 text-sm">
+                <Checkbox defaultChecked />
+                Save as preset
+              </label>
+            </StateColumn>
+            <StateColumn label="Disabled">
+              <label className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Checkbox disabled />
+                Locked option
+              </label>
+            </StateColumn>
+          </div>
+        </CaptureSection>
+
+        <CaptureSection id="combobox" title="Combobox">
+          <div className="grid gap-5 md:grid-cols-2">
+            <StateColumn label="Searchable">
+              <Combobox items={comboboxItems}>
+                <ComboboxInput
+                  className="w-full"
+                  placeholder="Find component"
+                  showClear
+                />
+                <ComboboxContent>
+                  <ComboboxEmpty>No components found.</ComboboxEmpty>
+                  <ComboboxList>
+                    {(item) => (
+                      <ComboboxItem key={item} value={item}>
+                        {item}
+                      </ComboboxItem>
+                    )}
+                  </ComboboxList>
+                </ComboboxContent>
+              </Combobox>
+            </StateColumn>
+            <StateColumn label="Disabled">
+              <Combobox items={comboboxItems}>
+                <ComboboxInput
+                  className="w-full"
+                  disabled
+                  placeholder="Component locked"
+                />
+              </Combobox>
+            </StateColumn>
+          </div>
+        </CaptureSection>
+
+        <CaptureSection id="command" title="Command">
+          <Command className="max-w-md rounded-xl border border-border/70">
+            <CommandInput placeholder="Search actions" />
+            <CommandList>
+              <CommandEmpty>No actions found.</CommandEmpty>
+              <CommandGroup heading="Suggestions">
+                <CommandItem>
+                  <Sparkles />
+                  <span>Generate state set</span>
+                </CommandItem>
+                <CommandItem>
+                  <Calendar />
+                  <span>Schedule critique</span>
+                </CommandItem>
+                <CommandItem disabled>
+                  <CircleAlert />
+                  <span>Review locked token</span>
+                </CommandItem>
+              </CommandGroup>
+              <CommandSeparator />
+              <CommandGroup heading="Settings">
+                <CommandItem>
+                  <UserRound />
+                  <span>Profile</span>
+                  <CommandShortcut>⌘P</CommandShortcut>
+                </CommandItem>
+                <CommandItem>
+                  <CreditCard />
+                  <span>Billing</span>
+                  <CommandShortcut>⌘B</CommandShortcut>
+                </CommandItem>
+                <CommandItem>
+                  <Settings />
+                  <span>Preferences</span>
+                  <CommandShortcut>⌘S</CommandShortcut>
+                </CommandItem>
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </CaptureSection>
+
+        <CaptureSection id="context-menu" title="Context Menu">
+          <div className="min-h-[260px]">
+            <ContextMenu>
+              <ContextMenuTrigger className="flex aspect-video w-full max-w-sm items-center justify-center rounded-lg border border-dashed border-border/80 bg-muted/20 text-sm text-muted-foreground">
+                Right click component canvas
+              </ContextMenuTrigger>
+              <ContextMenuContent>
+                <ContextMenuGroup>
+                  <ContextMenuLabel>Canvas actions</ContextMenuLabel>
+                  <ContextMenuItem>
+                    <Copy />
+                    Duplicate
+                    <ContextMenuShortcut>⌘D</ContextMenuShortcut>
+                  </ContextMenuItem>
+                  <ContextMenuItem>
+                    <Download />
+                    Export capture
+                    <ContextMenuShortcut>⇧E</ContextMenuShortcut>
+                  </ContextMenuItem>
+                  <ContextMenuCheckboxItem checked>
+                    Show guides
+                  </ContextMenuCheckboxItem>
+                </ContextMenuGroup>
+                <ContextMenuSeparator />
+                <ContextMenuRadioGroup value="dark">
+                  <ContextMenuRadioItem value="light">
+                    Light surface
+                  </ContextMenuRadioItem>
+                  <ContextMenuRadioItem value="dark">
+                    Dark surface
+                  </ContextMenuRadioItem>
+                </ContextMenuRadioGroup>
+                <ContextMenuSeparator />
+                <ContextMenuSub>
+                  <ContextMenuSubTrigger>
+                    <Archive />
+                    Move to
+                  </ContextMenuSubTrigger>
+                  <ContextMenuSubContent>
+                    <ContextMenuItem>Prototype board</ContextMenuItem>
+                    <ContextMenuItem>DP5 archive</ContextMenuItem>
+                  </ContextMenuSubContent>
+                </ContextMenuSub>
+                <ContextMenuSeparator />
+                <ContextMenuItem variant="destructive">
+                  Remove capture
+                </ContextMenuItem>
+              </ContextMenuContent>
+            </ContextMenu>
+          </div>
+        </CaptureSection>
+
+        <CaptureSection id="select" title="Select">
+          <div className="grid gap-5 md:grid-cols-3">
+            <StateColumn label="Default">
+              <Select items={componentOptions} defaultValue={null}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Choose component" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Components</SelectLabel>
+                    {componentOptions.map((item) => (
+                      <SelectItem key={item.value} value={item.value}>
+                        {item.label}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </StateColumn>
+            <StateColumn label="Selected">
+              <Select items={componentOptions} defaultValue="dialog">
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {componentOptions.map((item) => (
+                      <SelectItem key={item.value} value={item.value}>
+                        {item.label}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </StateColumn>
+            <StateColumn label="Disabled">
+              <Select items={componentOptions} defaultValue="command">
+                <SelectTrigger className="w-full" disabled>
+                  <SelectValue />
+                </SelectTrigger>
+              </Select>
             </StateColumn>
           </div>
         </CaptureSection>

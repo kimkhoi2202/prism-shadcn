@@ -13,7 +13,6 @@ import {
   Mail,
   Search,
   Settings,
-  SlidersHorizontal,
   Sparkles,
   Trash2,
   UserRound,
@@ -293,11 +292,6 @@ export function ComponentStatesBoard() {
                   data-state-target="input-group-focus"
                   placeholder="Search components"
                 />
-                <InputGroupAddon align="inline-end">
-                  <InputGroupButton size="icon-xs" aria-label="Tune filters">
-                    <SlidersHorizontal />
-                  </InputGroupButton>
-                </InputGroupAddon>
               </InputGroup>
             </StateColumn>
             <StateColumn label="Command">

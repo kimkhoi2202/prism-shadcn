@@ -72,7 +72,7 @@
     "react-qr-code": "^2.0.18",
     "react-resizable-panels": "^4",
     "react-textarea-autosize": "^8.5.9",
-    "recharts": "3.8.0",
+    "recharts": "3.8.1",
     "rehype-pretty-code": "^0.14.1",
     "rimraf": "^6.0.1",
     "server-only": "^0.0.1",
